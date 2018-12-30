@@ -1,0 +1,37 @@
+{
+  "name": "pi-plates",
+  "version": "0.0.2",
+  "description": "control Pi-Plates from node",
+  "main": "plates.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "vasync": "2.x.x"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mharsch/node-pi-plates.git"
+  },
+  "keywords": [
+    "adc",
+    "dac",
+    "relay",
+    "RELAYplate",
+    "DAQCplate",
+    "MOTORplate",
+    "Pi-Plates",
+    "pi",
+    "plates"
+  ],
+  "author": "Mike Harsch <mike@harschsystems.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/mharsch/node-pi-plates/issues"
+  },
+  "homepage": "https://github.com/mharsch/node-pi-plates#readme"
+}

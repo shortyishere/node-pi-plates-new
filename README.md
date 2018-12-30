@@ -1,1 +1,1 @@
-# node-pi-plates-new
+control Pi-Plates from node
