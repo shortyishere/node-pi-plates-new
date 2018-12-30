@@ -1,6 +1,7 @@
 import sys
 import json
 import piplates.DAQCplate as DP
+import piplates.DAQC2plate as D2
 import piplates.RELAYplate as RP
 import piplates.MOTORplate as MP
 
@@ -10,7 +11,7 @@ import piplates.MOTORplate as MP
 # listen for json messages on stdin of the format:
 # {
 #   addr: <pi plate address 0-7>,
-#   plate_type: <RELAY|DAQC>,
+#   plate_type: <RELAY|DAQC|DAQC2>,
 #   cmd: <command string>, args: {<command-specific args>}
 # }
 
@@ -67,6 +68,38 @@ while True:
                 break
             print(json.dumps(resp))
         elif (plate_type == "DAQC"):
+            if (cmd == "getDINbit"):
+                bit = args['bit']
+                state = DP.getDINbit(addr, bit)
+                resp['bit'] = bit
+                resp['state'] = state
+            elif (cmd == "setDOUTbit"):
+                bit = args['bit']
+                DP.setDOUTbit(addr, bit)
+                resp['bit'] = bit
+                resp['state'] = 1
+            elif (cmd == "clrDOUTbit"):
+                bit = args['bit']
+                DP.clrDOUTbit(addr, bit)
+                resp['bit'] = bit
+                resp['state'] = 0
+            elif (cmd == "toggleDOUTbit"):
+                bit = args['bit']
+                DP.toggleDOUTbit(addr, bit)
+                resp['bit'] = bit
+                resp['state'] = 'UNKNOWN'
+            elif (cmd == "getADC"):
+                channel = args['channel']
+                voltage = DP.getADC(addr, channel)
+                resp['channel'] = channel
+                resp['voltage'] = voltage
+            elif (cmd == "getTEMP"):
+                bit = args['bit']
+                scale = args['scale']
+                temp = DP.getTEMP(addr, bit, scale)
+                resp['temp'] = temp
+                resp['bit'] = bit
+        elif (plate_type == "DAQC2"):
             if (cmd == "getDINbit"):
                 bit = args['bit']
                 state = DP.getDINbit(addr, bit)
